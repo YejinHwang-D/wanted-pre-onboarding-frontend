@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: cadetblue;
+  color: white;
+}
+
+.logo {
+  margin-left: 1em;
+}
+
+.sign {
+  margin-right: 1em;
+  display: flex;
+}
+
+.sign p {
+  margin-left: 1em;
+}
