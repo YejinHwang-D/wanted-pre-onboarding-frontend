@@ -1,8 +1,9 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import useAuth from '../context/useAuth';
+import { AuthStateContext } from '../context/authContext';
 
 const Section = styled.main`
   display: flex;
@@ -24,12 +25,19 @@ const Form = styled.form`
 `;
 
 function Signin() {
+  const navigate = useNavigate();
+  const user = useContext(AuthStateContext);
+  useEffect(() => {
+    if (user) {
+      navigate('/todo');
+    }
+  });
+
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
   });
   const signinBtn = useRef();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (inputs.email.includes('@') && inputs.password.length >= 8) {
