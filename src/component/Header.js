@@ -1,15 +1,13 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const LinkStyled = styled(Link)`
-  text-decoration: none;
-  color: white;
-`;
 const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #8d8daa;
   color: white;
+  height: 4em;
 `;
 const LogoDiv = styled.div`
   margin-left: 3em;
@@ -17,6 +15,10 @@ const LogoDiv = styled.div`
 const SignDiv = styled.div`
   margin-right: 3em;
   display: flex;
+`;
+const LinkStyled = styled(Link)`
+  text-decoration: none;
+  color: white;
 `;
 const P = styled.p`
   margin-left: 1em;

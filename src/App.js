@@ -8,7 +8,7 @@ import { Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-      <Header></Header>
+      <Header />
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/signin" element={<Signin />}></Route>
