@@ -1,4 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
 
 const Section = styled.main`
@@ -26,6 +28,7 @@ function Signin() {
     password: '',
   });
   const signinBtn = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (inputs.email.includes('@') && inputs.password.length >= 8) {
@@ -40,11 +43,34 @@ function Signin() {
     setInputs({ ...inputs, [name]: value });
   }
 
+  async function submitHandler(e) {
+    e.preventDefault();
+    const res = await axios({
+      url: 'https://www.pre-onboarding-selection-task.shop/auth/signin',
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: {
+        email: inputs.email,
+        password: inputs.password,
+      },
+    });
+
+    const token = res.data.access_token;
+    localStorage.setItem('JWT', token);
+    if (res.status === 200) {
+      alert('로그인되었습니다. \nTodo List로 이동합니다.');
+      navigate('/todo');
+    }
+    navigate('/todo');
+  }
+
   return (
     <Section>
       <Div>
         <p>로그인</p>
-        <Form>
+        <Form onSubmit={submitHandler}>
           <input
             data-testid="email-input"
             type="email"
