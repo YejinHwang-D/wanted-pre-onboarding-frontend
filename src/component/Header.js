@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthStateContext } from '../context/authContext';
 import styled from 'styled-components';
 
 const HeaderStyled = styled.header`
@@ -25,6 +27,9 @@ const P = styled.p`
 `;
 
 function Header() {
+  const user = useContext(AuthStateContext);
+  console.log('heaer:', user);
+
   return (
     <HeaderStyled>
       <LogoDiv>
@@ -32,14 +37,20 @@ function Header() {
           <p>프리온보딩 프론트엔드</p>
         </LinkStyled>
       </LogoDiv>
-      <SignDiv>
-        <LinkStyled to="/signin">
-          <P>로그인</P>
-        </LinkStyled>
-        <LinkStyled to="signup">
-          <P>회원가입</P>
-        </LinkStyled>
-      </SignDiv>
+      {user ? (
+        <SignDiv>
+          <P>로그아웃</P>
+        </SignDiv>
+      ) : (
+        <SignDiv>
+          <LinkStyled to="/signin">
+            <P>로그인</P>
+          </LinkStyled>
+          <LinkStyled to="signup">
+            <P>회원가입</P>
+          </LinkStyled>
+        </SignDiv>
+      )}
     </HeaderStyled>
   );
 }

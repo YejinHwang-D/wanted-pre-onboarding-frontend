@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import useAuth from '../context/useAuth';
 
 const Section = styled.main`
   display: flex;
@@ -43,6 +44,7 @@ function Signin() {
     setInputs({ ...inputs, [name]: value });
   }
 
+  const { signIn } = useAuth();
   async function submitHandler(e) {
     e.preventDefault();
     const res = await axios({
@@ -58,7 +60,7 @@ function Signin() {
     });
 
     const token = res.data.access_token;
-    localStorage.setItem('JWT', token);
+    signIn(token);
     if (res.status === 200) {
       alert('로그인되었습니다. \nTodo List로 이동합니다.');
       navigate('/todo');
