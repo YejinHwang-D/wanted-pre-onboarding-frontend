@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthStateContext } from '../context/authContext';
 import styled from 'styled-components';
+import useAuth from '../context/useAuth';
 
 const HeaderStyled = styled.header`
   display: flex;
@@ -24,11 +25,19 @@ const LinkStyled = styled(Link)`
 `;
 const P = styled.p`
   margin-left: 1em;
+  cursor: pointer;
 `;
 
 function Header() {
   const user = useContext(AuthStateContext);
-  console.log('heaer:', user);
+  const { signOut } = useAuth();
+  const navigate = useNavigate();
+
+  function signoutHandler() {
+    signOut();
+    alert('로그아웃되었습니다.');
+    navigate('/');
+  }
 
   return (
     <HeaderStyled>
@@ -39,7 +48,7 @@ function Header() {
       </LogoDiv>
       {user ? (
         <SignDiv>
-          <P>로그아웃</P>
+          <P onClick={signoutHandler}>로그아웃</P>
         </SignDiv>
       ) : (
         <SignDiv>

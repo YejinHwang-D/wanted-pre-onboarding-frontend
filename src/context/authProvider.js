@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { AuthContext, AuthStateContext } from './authContext';
 
 const AuthProvider = ({ children }) => {
@@ -13,6 +13,12 @@ const AuthProvider = ({ children }) => {
     setUser(false);
   };
   const dispatch = useMemo(() => ({ login, logout }), []);
+
+  useEffect(() => {
+    if (localStorage.getItem('JWT')) {
+      setUser(true);
+    }
+  }, []);
 
   return (
     <AuthStateContext.Provider value={user}>
