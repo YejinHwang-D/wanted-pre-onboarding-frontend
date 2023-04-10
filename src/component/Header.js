@@ -47,6 +47,9 @@ function Header() {
       </LogoDiv>
       {user ? (
         <SignDiv>
+          <LinkStyled to="/todo">
+            <p>Todo</p>
+          </LinkStyled>
           <P onClick={signoutHandler}>로그아웃</P>
         </SignDiv>
       ) : (
