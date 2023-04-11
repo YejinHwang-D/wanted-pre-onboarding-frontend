@@ -17,6 +17,8 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (localStorage.getItem('JWT')) {
       setUser(true);
+    } else {
+      setUser(false);
     }
   }, []);
 

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthStateContext } from '../context/authContext';
 import styled from 'styled-components';
@@ -31,7 +31,6 @@ const P = styled.p`
 function Header() {
   const user = useContext(AuthStateContext);
   const { signOut } = useAuth();
-  const navigate = useNavigate();
 
   function signoutHandler() {
     signOut();

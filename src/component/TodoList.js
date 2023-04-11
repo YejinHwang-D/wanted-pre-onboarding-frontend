@@ -1,19 +1,97 @@
-import { useEffect, useContext } from 'react';
+import axios from 'axios';
+import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router';
-import { AuthStateContext } from '../context/authContext';
+import styled from 'styled-components';
+import TodoElement from './todo/TodoElement';
+
+const Section = styled.main`
+  display: flex;
+  justify-content: center;
+`;
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  height: 20em;
+  margin-top: 5em;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+`;
+const Form = styled.form`
+  display: flex;
+`;
 
 function TodoList() {
+  const token = localStorage.getItem('JWT');
   const navigate = useNavigate();
-  const user = useContext(AuthStateContext);
+
+  const [input, setInput] = useState('');
+  const [todoList, setTodoList] = useState(null);
+
+  const getData = useCallback(async () => {
+    const res = await axios({
+      url: 'https://www.pre-onboarding-selection-task.shop/todos',
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setTodoList(res.data);
+    console.log(res.data);
+  });
 
   useEffect(() => {
-    if (!user) {
+    if (!localStorage.getItem('JWT')) {
       alert('Todo List를 작성하시려면 로그인해주세요.');
       navigate('/signin');
     }
-  });
+    getData();
+  }, [navigate]);
 
-  return <section>Todo List</section>;
+  function changeHandler(e) {
+    setInput(e.target.value);
+  }
+
+  async function submitHandler(e) {
+    e.preventDefault();
+    const res = await axios({
+      url: 'https://www.pre-onboarding-selection-task.shop/todos',
+      method: 'post',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      data: {
+        todo: input,
+      },
+    });
+
+    if (res.status !== 201) {
+      throw new Error('[ERROR] 할 일이 정상적으로 등록되지 않았습니다.');
+    }
+  }
+
+  return (
+    <Section>
+      <Div>
+        <p>Todo List</p>
+        <Form onSubmit={submitHandler}>
+          <input
+            data-testid="new-todo-input"
+            placeholder="input your new Todo"
+            value={input}
+            onChange={changeHandler}
+          />
+          <button data-testid="new-todo-add-button">추가</button>
+        </Form>
+        {todoList &&
+          todoList.map((element) => (
+            <TodoElement key={element.id} data={element} getData={getData} />
+          ))}
+      </Div>
+    </Section>
+  );
 }
 
 export default TodoList;
