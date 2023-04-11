@@ -12,9 +12,10 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70%;
-  height: 20em;
+  width: 50%;
+  min-height: 20em;
   margin-top: 5em;
+  border: 3em solid #f7f7f7;
   border-radius: 10px;
   background-color: #f7f7f7;
 `;
@@ -38,7 +39,6 @@ function TodoList() {
       },
     });
     setTodoList(res.data);
-    console.log(res.data);
   });
 
   useEffect(() => {
@@ -69,6 +69,8 @@ function TodoList() {
 
     if (res.status !== 201) {
       throw new Error('[ERROR] 할 일이 정상적으로 등록되지 않았습니다.');
+    } else {
+      setTodoList([...todoList, res.data]);
     }
   }
 
