@@ -3,6 +3,8 @@ import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import TodoElement from './todo/TodoElement';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 const Section = styled.main`
   display: flex;
@@ -15,12 +17,54 @@ const Div = styled.div`
   width: 50%;
   min-height: 20em;
   margin-top: 5em;
-  border: 3em solid #f7f7f7;
-  border-radius: 10px;
-  background-color: #f7f7f7;
+  border: 3em solid white;
+  background-color: white;
+  box-shadow: rgba(247, 247, 251, 0.2) 0px 8px 24px;
+  @media screen and (max-width: 800px) {
+    width: 65%;
+  }
+`;
+const P = styled.p`
+  color: #7c83fd;
+  font-size: 1.2em;
+  font-weight: bold;
 `;
 const Form = styled.form`
   display: flex;
+`;
+const Input = styled.input`
+  border: 1px solid #f7f7f7;
+  border-radius: 5px;
+  padding: 1em;
+  margin-right: 0.5em;
+  background-color: #f7f7fb;
+  width: 20vw;
+  &::placeholder {
+    color: #bababa;
+  }
+  &:focus {
+    outline: none;
+  }
+  @media screen and (max-width: 800px) {
+    width: 30vw;
+  }
+`;
+const Button = styled.button`
+  border: none;
+  background: inherit;
+  color: #7c83fd;
+  width: 5em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+const List = styled.ul`
+  margin-top: 2em;
+  padding: 0;
+  width: 70%;
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 function TodoList() {
@@ -77,20 +121,25 @@ function TodoList() {
   return (
     <Section>
       <Div>
-        <p>Todo List</p>
+        <P>Todo List</P>
         <Form onSubmit={submitHandler}>
-          <input
+          <Input
             data-testid="new-todo-input"
             placeholder="input your new Todo"
             value={input}
             onChange={changeHandler}
           />
-          <button data-testid="new-todo-add-button">추가</button>
+          <Button data-testid="new-todo-add-button">
+            추가
+            <FontAwesomeIcon icon={faPen} color="#7C83FD" />
+          </Button>
         </Form>
-        {todoList &&
-          todoList.map((element) => (
-            <TodoElement key={element.id} data={element} getData={getData} />
-          ))}
+        <List>
+          {todoList &&
+            todoList.map((element) => (
+              <TodoElement key={element.id} data={element} getData={getData} />
+            ))}
+        </List>
       </Div>
     </Section>
   );

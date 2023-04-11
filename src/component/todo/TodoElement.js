@@ -2,9 +2,25 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useState, useRef } from 'react';
 import { useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Li = styled.li`
   list-style: none;
+`;
+const Label = styled.label`
+  display: flex;
+  margin: 1em;
+`;
+const Button = styled.button`
+  border: 5px solid white;
+  background: white;
+  color: #bababa;
+  border-radius: 5px;
+`;
+const Span = styled.span`
+  color: #7c83fd;
+  margin: 0 1em 0 1em;
 `;
 
 function TodoElement({ data, getData }) {
@@ -80,8 +96,10 @@ function TodoElement({ data, getData }) {
 
   return (
     <Li>
-      <label>
-        <input type="checkbox" onChange={isCompletedHandler} ref={checked} />
+      <Label>
+        <label>
+          <input type="checkbox" onChange={isCompletedHandler} ref={checked} />
+        </label>
         {isUpdatemode ? (
           <div>
             <input
@@ -90,21 +108,25 @@ function TodoElement({ data, getData }) {
               name="todo"
               onChange={changeHandler}
             />
-            <button data-testid="submit-button" onClick={isUpdateHandler}>
+            <Button data-testid="submit-button" onClick={isUpdateHandler}>
               제출
-            </button>
-            <button data-testid="cancel-button" onClick={isUpdatemodeHandler}>
+            </Button>
+            <Button data-testid="cancel-button" onClick={isUpdatemodeHandler}>
               취소
-            </button>
+            </Button>
           </div>
         ) : (
           <div>
-            <span>{inputs.todo}</span>
-            <button onClick={isUpdatemodeHandler}>수정</button>
-            <button onClick={deleteHandler}>삭제</button>
+            <Span>{inputs.todo}</Span>
+            <Button onClick={isUpdatemodeHandler}>
+              <FontAwesomeIcon icon={faPen} color="#bababa" />
+            </Button>
+            <Button onClick={deleteHandler}>
+              <FontAwesomeIcon icon={faTrash} color="#bababa" />
+            </Button>
           </div>
         )}
-      </label>
+      </Label>
     </Li>
   );
 }
