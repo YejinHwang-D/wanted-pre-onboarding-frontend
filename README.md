@@ -13,8 +13,13 @@
 ### 실행 방법
 
 ```shell
-
+git clone https://github.com/YejinHwang-D/wanted-pre-onboarding-frontend.git
+cd wanted-pre-onboarding-frontend
+npm install
+npm start
 ```
 
 ### 데모 영상
-# wanted-pre-onboarding-frontend
+
+Netlify를 통해 배포.
+[배포 링크](https://main--friendly-chebakia-9feb7e.netlify.app/)
