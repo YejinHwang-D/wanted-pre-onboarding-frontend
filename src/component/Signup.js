@@ -51,7 +51,6 @@ function Signup() {
         navigate('/signin');
       }
     } catch (error) {
-      console.log(error);
       alert('회원가입에 실패했습니다.');
     }
   }

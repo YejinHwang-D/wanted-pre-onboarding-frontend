@@ -14,14 +14,20 @@ function TodoList() {
   const [todoList, setTodoList] = useState(null);
 
   const getData = useCallback(async () => {
-    const res = await axios({
-      url: 'https://www.pre-onboarding-selection-task.shop/todos',
-      method: 'get',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    setTodoList(res.data);
+    try {
+      const res = await axios({
+        url: 'https://www.pre-onboarding-selection-task.shop/todos',
+        method: 'get',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.status === 200) {
+        setTodoList(res.data);
+      }
+    } catch (error) {
+      alert('[ERROR] 투두리스트를 불러오지 못했습니다.');
+    }
   });
 
   useEffect(() => {
@@ -38,22 +44,24 @@ function TodoList() {
 
   async function submitHandler(e) {
     e.preventDefault();
-    const res = await axios({
-      url: 'https://www.pre-onboarding-selection-task.shop/todos',
-      method: 'post',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      data: {
-        todo: input,
-      },
-    });
+    try {
+      const res = await axios({
+        url: 'https://www.pre-onboarding-selection-task.shop/todos',
+        method: 'post',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        data: {
+          todo: input,
+        },
+      });
 
-    if (res.status !== 201) {
-      throw new Error('[ERROR] 할 일이 정상적으로 등록되지 않았습니다.');
-    } else {
-      setTodoList([...todoList, res.data]);
+      if (res.status === 201) {
+        setTodoList([...todoList, res.data]);
+      }
+    } catch (error) {
+      alert('[ERROR] 할 일이 정상적으로 등록되지 않았습니다.');
     }
   }
 

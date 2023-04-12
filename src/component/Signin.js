@@ -36,25 +36,29 @@ function Signin() {
   const { signIn } = useAuth();
   async function submitHandler(e) {
     e.preventDefault();
-    const res = await axios({
-      url: 'https://www.pre-onboarding-selection-task.shop/auth/signin',
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      data: {
-        email: inputs.email,
-        password: inputs.password,
-      },
-    });
+    try {
+      const res = await axios({
+        url: 'https://www.pre-onboarding-selection-task.shop/auth/signin',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: {
+          email: inputs.email,
+          password: inputs.password,
+        },
+      });
 
-    const token = res.data.access_token;
-    signIn(token);
-    if (res.status === 200) {
-      alert('로그인되었습니다. \nTodo List로 이동합니다.');
+      const token = res.data.access_token;
+      signIn(token);
+      if (res.status === 200) {
+        alert('로그인되었습니다. \nTodo List로 이동합니다.');
+        navigate('/todo');
+      }
       navigate('/todo');
+    } catch (error) {
+      alert('[ERROR] 로그인에 실패했습니다.');
     }
-    navigate('/todo');
   }
 
   return (

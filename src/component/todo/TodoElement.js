@@ -34,32 +34,36 @@ function TodoElement({ data, getData }) {
   }
 
   async function updateHandler(enteredData) {
-    const res = await axios({
-      url: `https://www.pre-onboarding-selection-task.shop/todos/${data.id}`,
-      method: 'put',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      data: enteredData,
-    });
-    if (res.status !== 200) {
-      throw new Error('[ERROR] 정상적으로 업데이트되지 않았습니다.');
+    try {
+      const res = await axios({
+        url: `https://www.pre-onboarding-selection-task.shop/todos/${data.id}`,
+        method: 'put',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        data: enteredData,
+      });
+    } catch (error) {
+      alert('[ERROR] 정상적으로 업데이트되지 않았습니다.');
     }
   }
 
   async function deleteHandler() {
-    const res = await axios({
-      url: `https://www.pre-onboarding-selection-task.shop/todos/${data.id}`,
-      method: 'delete',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (res.status !== 204) {
-      throw new Error('[ERROR] 정상적으로 삭제되지 않았습니다.');
+    try {
+      const res = await axios({
+        url: `https://www.pre-onboarding-selection-task.shop/todos/${data.id}`,
+        method: 'delete',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.status === 204) {
+        getData();
+      }
+    } catch (error) {
+      alert('[ERROR] 정상적으로 삭제되지 않았습니다.');
     }
-    getData();
   }
 
   async function isCompletedHandler() {
