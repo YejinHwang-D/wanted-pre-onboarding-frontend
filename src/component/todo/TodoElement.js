@@ -83,13 +83,7 @@ function TodoElement({ data, getData }) {
   return (
     <Li>
       <Label>
-        <label>
-          <Checkbox
-            type="checkbox"
-            onChange={isCompletedHandler}
-            ref={checked}
-          />
-        </label>
+        <Checkbox type="checkbox" onChange={isCompletedHandler} ref={checked} />
         {isUpdatemode ? (
           <div>
             <input
@@ -108,10 +102,10 @@ function TodoElement({ data, getData }) {
         ) : (
           <div>
             <Span>{inputs.todo}</Span>
-            <Button onClick={isUpdatemodeHandler}>
+            <Button data-testid="modify-button" onClick={isUpdatemodeHandler}>
               <FontAwesomeIcon icon={faPen} color="#bababa" />
             </Button>
-            <Button onClick={deleteHandler}>
+            <Button data-testid="delete-button" onClick={deleteHandler}>
               <FontAwesomeIcon icon={faTrash} color="#bababa" />
             </Button>
           </div>

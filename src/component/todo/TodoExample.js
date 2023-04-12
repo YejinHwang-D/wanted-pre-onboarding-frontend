@@ -5,9 +5,7 @@ import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 function TodoExample({ text }) {
   return (
     <Label>
-      <label>
-        <Checkbox type="checkbox" />
-      </label>
+      <Checkbox type="checkbox" />
       <Span>{text}</Span>
       <Button>
         <FontAwesomeIcon icon={faPen} color="#bababa" />

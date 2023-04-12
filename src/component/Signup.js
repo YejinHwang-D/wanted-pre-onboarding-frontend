@@ -77,7 +77,7 @@ function Signup() {
             placeholder="비밀번호를 입력해주세요. (8자 이상)"
           />
           <Button
-            data-testid="signin-button"
+            data-testid="signup-button"
             type="submit"
             ref={signinBtn}
             disabled
