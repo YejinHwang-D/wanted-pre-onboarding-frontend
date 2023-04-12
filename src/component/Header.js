@@ -3,6 +3,8 @@ import { useContext } from 'react';
 import { AuthStateContext } from '../context/authContext';
 import styled from 'styled-components';
 import useAuth from '../context/useAuth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faB, faBars } from '@fortawesome/free-solid-svg-icons';
 
 const HeaderStyled = styled.header`
   display: flex;
@@ -22,6 +24,16 @@ const SignDiv = styled.div`
 const LinkStyled = styled(Link)`
   text-decoration: none;
   color: white;
+  display: flex;
+  align-items: center;
+  transition: transform 0.4s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+const Span = styled.span`
+  margin-left: 0.5em;
 `;
 const P = styled.p`
   margin-left: 1em;
@@ -49,7 +61,8 @@ function Header() {
       {user ? (
         <SignDiv>
           <LinkStyled to="/todo">
-            <p>Todo</p>
+            <FontAwesomeIcon icon={faBars} color="white" />
+            <Span>Todo</Span>
           </LinkStyled>
           <P onClick={signoutHandler}>로그아웃</P>
         </SignDiv>

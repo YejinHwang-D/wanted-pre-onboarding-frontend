@@ -11,6 +11,7 @@ const Li = styled.li`
 const Label = styled.label`
   display: flex;
   margin: 1em;
+  align-items: center;
 `;
 const Button = styled.button`
   border: 5px solid white;
@@ -18,10 +19,26 @@ const Button = styled.button`
   color: #bababa;
   border-radius: 5px;
   cursor: pointer;
+  transition: transform 0.4s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
 const Span = styled.span`
   color: #7c83fd;
   margin: 0 1em 0 1em;
+`;
+const Checkbox = styled.input`
+  appearance: none;
+  width: 1.1em;
+  height: 1.1em;
+  border: 1px solid #7c83fd;
+  border-radius: 3px;
+  &:checked {
+    background-color: #7c83fd;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+  }
 `;
 
 function TodoElement({ data, getData }) {
@@ -99,7 +116,11 @@ function TodoElement({ data, getData }) {
     <Li>
       <Label>
         <label>
-          <input type="checkbox" onChange={isCompletedHandler} ref={checked} />
+          <Checkbox
+            type="checkbox"
+            onChange={isCompletedHandler}
+            ref={checked}
+          />
         </label>
         {isUpdatemode ? (
           <div>

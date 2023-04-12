@@ -57,6 +57,11 @@ const Button = styled.button`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  transition: transform 0.4s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 const List = styled.ul`
   margin-top: 2em;
