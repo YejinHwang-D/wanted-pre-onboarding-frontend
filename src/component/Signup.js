@@ -12,15 +12,58 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
-  height: 20em;
+  width: 40%;
+  min-height: 15em;
   margin-top: 5em;
-  border-radius: 10px;
-  background-color: #f7f7f7;
+  border: 3em solid white;
+  background-color: white;
+  background-color: white;
+  box-shadow: rgba(247, 247, 251, 0.2) 0px 8px 24px;
+`;
+const P = styled.p`
+  color: #7c83fd;
+  font-size: 1.2em;
+  font-weight: 400;
 `;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
+`;
+const Input = styled.input`
+  border: 1px solid #f7f7f7;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 0.5em 0;
+  background-color: #f7f7fb;
+  width: 20vw;
+  &::placeholder {
+    color: #bababa;
+  }
+  &:focus {
+    outline: none;
+  }
+  @media screen and (max-width: 800px) {
+    width: 30vw;
+  }
+`;
+const Button = styled.button`
+  border: none;
+  border-radius: 5px;
+  margin-top: 0.5em;
+  background-color: #96baff;
+  color: #f7f7fb;
+  width: 10em;
+  height: 3em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: rgba(247, 247, 251, 0.2) 0px 8px 24px;
+  cursor: pointer;
+  &:hover {
+    background-color: #fff2f2;
+    color: #96baff;
+  }
 `;
 
 function Signup() {
@@ -74,9 +117,9 @@ function Signup() {
   return (
     <Section>
       <Div>
-        <p>회원가입</p>
+        <P>회원가입</P>
         <Form onSubmit={submitHandler}>
-          <input
+          <Input
             data-testid="email-input"
             type="email"
             name="email"
@@ -84,7 +127,7 @@ function Signup() {
             onChange={changeHandler}
             placeholder="이메일을 입력해주세요."
           />
-          <input
+          <Input
             data-testid="password-input"
             type="password"
             name="password"
@@ -92,14 +135,14 @@ function Signup() {
             onChange={changeHandler}
             placeholder="비밀번호를 입력해주세요. (8자 이상)"
           />
-          <button
+          <Button
             data-testid="signin-button"
             type="submit"
             ref={signinBtn}
             disabled
           >
             회원가입
-          </button>
+          </Button>
         </Form>
       </Div>
     </Section>

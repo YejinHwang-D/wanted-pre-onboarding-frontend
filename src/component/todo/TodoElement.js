@@ -17,6 +17,7 @@ const Button = styled.button`
   background: white;
   color: #bababa;
   border-radius: 5px;
+  cursor: pointer;
 `;
 const Span = styled.span`
   color: #7c83fd;
