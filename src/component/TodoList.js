@@ -6,72 +6,6 @@ import TodoElement from './todo/TodoElement';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 
-const Section = styled.main`
-  display: flex;
-  justify-content: center;
-`;
-const Div = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
-  min-height: 20em;
-  margin-top: 5em;
-  border: 3em solid white;
-  background-color: white;
-  box-shadow: rgba(247, 247, 251, 0.2) 0px 8px 24px;
-  @media screen and (max-width: 800px) {
-    width: 65%;
-  }
-`;
-const P = styled.p`
-  color: #7c83fd;
-  font-size: 1.2em;
-  font-weight: bold;
-`;
-const Form = styled.form`
-  display: flex;
-`;
-const Input = styled.input`
-  border: 1px solid #f7f7f7;
-  border-radius: 5px;
-  padding: 1em;
-  margin-right: 0.5em;
-  background-color: #f7f7fb;
-  width: 20vw;
-  &::placeholder {
-    color: #bababa;
-  }
-  &:focus {
-    outline: none;
-  }
-  @media screen and (max-width: 800px) {
-    width: 30vw;
-  }
-`;
-const Button = styled.button`
-  border: none;
-  background: inherit;
-  color: #7c83fd;
-  width: 5em;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  transition: transform 0.4s;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-`;
-const List = styled.ul`
-  margin-top: 2em;
-  padding: 0;
-  width: 70%;
-  @media screen and (max-width: 800px) {
-    width: 100%;
-  }
-`;
-
 function TodoList() {
   const token = localStorage.getItem('JWT');
   const navigate = useNavigate();
@@ -149,5 +83,71 @@ function TodoList() {
     </Section>
   );
 }
+
+const Section = styled.main`
+  display: flex;
+  justify-content: center;
+`;
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  min-height: 20em;
+  margin-top: 5em;
+  border: 3em solid white;
+  background-color: white;
+  box-shadow: rgba(247, 247, 251, 0.2) 0px 8px 24px;
+  @media screen and (max-width: 800px) {
+    width: 65%;
+  }
+`;
+const P = styled.p`
+  color: #7c83fd;
+  font-size: 1.2em;
+  font-weight: bold;
+`;
+const Form = styled.form`
+  display: flex;
+`;
+const Input = styled.input`
+  border: 1px solid #f7f7f7;
+  border-radius: 5px;
+  padding: 1em;
+  margin-right: 0.5em;
+  background-color: #f7f7fb;
+  width: 20vw;
+  &::placeholder {
+    color: #bababa;
+  }
+  &:focus {
+    outline: none;
+  }
+  @media screen and (max-width: 800px) {
+    width: 30vw;
+  }
+`;
+const Button = styled.button`
+  border: none;
+  background: inherit;
+  color: #7c83fd;
+  width: 5em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: transform 0.4s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+const List = styled.ul`
+  margin-top: 2em;
+  padding: 0;
+  width: 70%;
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
+`;
 
 export default TodoList;

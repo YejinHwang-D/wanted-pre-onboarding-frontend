@@ -3,6 +3,42 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import TodoExample from './todo/TodoExample';
 
+function Main() {
+  function exampleSubmit(e) {
+    e.preventDefault();
+    alert('로그인 후 Todo 페이지에서 이용하실 수 있어요. :)');
+  }
+  return (
+    <Section>
+      <Div>
+        <Title>PRE-ONBOARDING</Title>
+        <Title>FRONTEND INTERNSHIP</Title>
+      </Div>
+      <Div>
+        <Todo>
+          <TodoTitle>Todo List</TodoTitle>
+          <Form onSubmit={exampleSubmit}>
+            <Input
+              data-testid="new-todo-input"
+              placeholder="input your new Todo"
+            />
+            <Button data-testid="new-todo-add-button">
+              추가
+              <FontAwesomeIcon icon={faPen} color="#7C83FD" />
+            </Button>
+          </Form>
+          <List>
+            <TodoExample text="로그인하시면 Todo 리스트를 이용하실 수 있어요!" />
+            <TodoExample text="아직 회원이 아니라면 회원가입을 해주세요. :)" />
+            <TodoExample text="오늘 할 일을 입력하고," />
+            <TodoExample text="완료 여부를 저장해보세요." />
+          </List>
+        </Todo>
+      </Div>
+    </Section>
+  );
+}
+
 const Section = styled.main`
   display: flex;
   flex-direction: column;
@@ -15,7 +51,7 @@ const Div = styled.div`
   justify-content: center;
   background-color: white;
   width: 70%;
-  margin-top: 3em;
+  margin: 1.5em 0;
   border: 1em solid white;
   box-shadow: rgba(247, 247, 251, 0.2) 0px 8px 24px;
 `;
@@ -83,37 +119,5 @@ const List = styled.ul`
     width: 100%;
   }
 `;
-
-function Main() {
-  return (
-    <Section>
-      <Div>
-        <Title>PRE-ONBOARDING</Title>
-        <Title>FRONTEND INTERNSHIP</Title>
-      </Div>
-      <Div>
-        <Todo>
-          <TodoTitle>Todo List</TodoTitle>
-          <Form>
-            <Input
-              data-testid="new-todo-input"
-              placeholder="input your new Todo"
-            />
-            <Button data-testid="new-todo-add-button">
-              추가
-              <FontAwesomeIcon icon={faPen} color="#7C83FD" />
-            </Button>
-          </Form>
-          <List>
-            <TodoExample text="로그인하시면 Todo 리스트를 이용하실 수 있어요!" />
-            <TodoExample text="아직 회원이 아니라면 회원가입을 해주세요. :)" />
-            <TodoExample text="오늘 할 일을 입력하고," />
-            <TodoExample text="완료 여부를 저장해보세요." />
-          </List>
-        </Todo>
-      </Div>
-    </Section>
-  );
-}
 
 export default Main;

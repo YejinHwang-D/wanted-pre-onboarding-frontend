@@ -2,6 +2,23 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 
+function TodoExample({ text }) {
+  return (
+    <Label>
+      <label>
+        <Checkbox type="checkbox" />
+      </label>
+      <Span>{text}</Span>
+      <Button>
+        <FontAwesomeIcon icon={faPen} color="#bababa" />
+      </Button>
+      <Button>
+        <FontAwesomeIcon icon={faTrash} color="#bababa" />
+      </Button>
+    </Label>
+  );
+}
+
 const Checkbox = styled.input`
   appearance: none;
   width: 1.1em;
@@ -36,22 +53,5 @@ const Span = styled.span`
   color: #7c83fd;
   margin: 0 1em 0 1em;
 `;
-
-function TodoExample({ text }) {
-  return (
-    <Label>
-      <label>
-        <Checkbox type="checkbox" />
-      </label>
-      <Span>{text}</Span>
-      <Button>
-        <FontAwesomeIcon icon={faPen} color="#bababa" />
-      </Button>
-      <Button>
-        <FontAwesomeIcon icon={faTrash} color="#bababa" />
-      </Button>
-    </Label>
-  );
-}
 
 export default TodoExample;
