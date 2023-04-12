@@ -51,18 +51,25 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   margin-top: 0.5em;
-  background-color: #96baff;
-  color: #f7f7fb;
   width: 10em;
   height: 3em;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   box-shadow: rgba(247, 247, 251, 0.2) 0px 8px 24px;
   cursor: pointer;
+  background-color: #96baff;
+  color: #f7f7fb;
+
   &:hover {
     background-color: #fff2f2;
     color: #96baff;
+  }
+
+  &:disabled {
+    background-color: #bababa;
+    cursor: auto;
+    &:hover {
+      background: #bababa;
+      color: white;
+    }
   }
 `;
 
