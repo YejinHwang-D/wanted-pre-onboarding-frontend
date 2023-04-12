@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthStateContext } from '../context/authContext';
 import styled from 'styled-components';
@@ -29,12 +29,14 @@ const P = styled.p`
 `;
 
 function Header() {
+  const navigate = useNavigate();
   const user = useContext(AuthStateContext);
   const { signOut } = useAuth();
 
   function signoutHandler() {
     signOut();
     alert('로그아웃되었습니다.');
+    navigate('/');
   }
 
   return (
