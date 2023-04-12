@@ -103,21 +103,25 @@ function Signup() {
 
   async function submitHandler(e) {
     e.preventDefault();
-    const res = await axios({
-      url: 'https://www.pre-onboarding-selection-task.shop/auth/signup',
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      data: {
-        email: inputs.email,
-        password: inputs.password,
-      },
-    });
-    console.log(res);
-    if (res.status === 201) {
-      alert('회원가입이 완료되었습니다.');
-      navigate('/signin');
+    try {
+      const res = await axios({
+        url: 'https://www.pre-onboarding-selection-task.shop/auth/signup',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: {
+          email: inputs.email,
+          password: inputs.password,
+        },
+      });
+      if (res.status === 201) {
+        alert('회원가입이 완료되었습니다.');
+        navigate('/signin');
+      }
+    } catch (error) {
+      console.log(error);
+      alert('회원가입에 실패했습니다.');
     }
   }
 
