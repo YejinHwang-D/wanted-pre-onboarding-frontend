@@ -86,7 +86,7 @@ function TodoElement({ data, getData }) {
         <Checkbox type="checkbox" onChange={isCompletedHandler} ref={checked} />
         {isUpdatemode ? (
           <div>
-            <input
+            <Input
               data-testid="modify-input"
               value={inputs.todo}
               name="todo"
@@ -148,6 +148,23 @@ const Checkbox = styled.input`
   &:checked {
     background-color: #7c83fd;
     background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+  }
+`;
+const Input = styled.input`
+  border: 1px solid #f7f7f7;
+  border-radius: 5px;
+  padding: 1em;
+  margin-right: 0.5em;
+  background-color: #f7f7fb;
+  width: 20vw;
+  &::placeholder {
+    color: #bababa;
+  }
+  &:focus {
+    outline: none;
+  }
+  @media screen and (max-width: 800px) {
+    width: 30vw;
   }
 `;
 

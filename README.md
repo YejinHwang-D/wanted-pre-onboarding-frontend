@@ -21,5 +21,5 @@ npm start
 
 ### 데모 영상
 
-Netlify를 통해 배포.
-[배포 링크](https://main--friendly-chebakia-9feb7e.netlify.app/)
+Vercel을 통해 배포.
+[배포 링크](https://wanted-pre-onboarding-frontend-ten-ruddy.vercel.app/)
